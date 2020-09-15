@@ -1,6 +1,6 @@
 # Discord Activity Changer
 
-[![Support Server](https://img.shields.io/discord/591914197219016707.svg?label=Discord&logo=Discord&colorB=7289da&style=for-the-badge)](https://discord.gg/cM488Ws)
+[![Support Server](https://img.shields.io/discord/344239463540457478.svg?label=Discord&logo=Discord&colorB=7289da&style=for-the-badge)](https://discord.gg/cM488Ws)
 
 This is a simple Discord activity editor made in c++ and designed for use in an upcoming project. 
 
