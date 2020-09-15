@@ -63,15 +63,15 @@ void changeMap(string map) //this is called by changeMapThread
 	if (map == map1)
 	{
 		activity.SetDetails("Playing Hardpoint on Miami");
-		activity.GetAssets().SetLargeImage("bo");
+		activity.GetAssets().SetLargeImage("cw");
 		activity.GetAssets().SetLargeText("Miami");
-		activity.GetAssets().SetSmallImage("small");
+		activity.GetAssets().SetSmallImage("smallz");
 		activity.GetAssets().SetSmallText("Multiplayer");
 	}
 	else if (map == map2)
 	{
 		activity.SetDetails("Playing Hardpoint on Satellite");
-		activity.GetAssets().SetLargeImage("bo");
+		activity.GetAssets().SetLargeImage("cw");
 		activity.GetAssets().SetLargeText("Satellite");
 		activity.GetAssets().SetSmallImage("smallz");
 		activity.GetAssets().SetSmallText("Multiplayer");
@@ -79,7 +79,7 @@ void changeMap(string map) //this is called by changeMapThread
 	else if (map == map3)
 	{
 		activity.SetDetails("Hardpoint on Armada");
-		activity.GetAssets().SetLargeImage("bo");
+		activity.GetAssets().SetLargeImage("cw");
 		activity.GetAssets().SetLargeText("Armada");
 		activity.GetAssets().SetSmallImage("smallz");
 		activity.GetAssets().SetSmallText("Multiplayer");
@@ -87,7 +87,7 @@ void changeMap(string map) //this is called by changeMapThread
 	else if (map == map4)
 	{
 		activity.SetDetails("Playing Hardpoint on Crossroads");
-		activity.GetAssets().SetLargeImage("bo");
+		activity.GetAssets().SetLargeImage("cw");
 		activity.GetAssets().SetLargeText("Crossroads");
 		activity.GetAssets().SetSmallImage("smallz");
 		activity.GetAssets().SetSmallText("Multiplayer");
@@ -95,7 +95,7 @@ void changeMap(string map) //this is called by changeMapThread
 	else if (map == map5)
 	{
 		activity.SetDetails("Playing Hardpoint on Moscow");
-		activity.GetAssets().SetLargeImage("bo");
+		activity.GetAssets().SetLargeImage("cw");
 		activity.GetAssets().SetLargeText("Moscow");
 		activity.GetAssets().SetSmallImage("smallz");
 		activity.GetAssets().SetSmallText("Multiplayer");
@@ -103,7 +103,7 @@ void changeMap(string map) //this is called by changeMapThread
 	else
 	{
 		activity.SetDetails("In pre-game lobby");
-		activity.GetAssets().SetLargeImage("bo");
+		activity.GetAssets().SetLargeImage("cw");
 		activity.GetAssets().SetLargeText("Call of Duty");
 		activity.GetAssets().SetSmallImage("smallz");
 		activity.GetAssets().SetSmallText("Cold War");
@@ -182,7 +182,7 @@ int main() //basically nothing here matters and this program can just be made in
 	//here is the default/starting activity
 	activity.SetDetails("In a party");
 	//activity.SetDetails("Extinction on Awakening");
-	activity.GetAssets().SetLargeImage("bo");
+	activity.GetAssets().SetLargeImage("cw");
 	activity.GetAssets().SetLargeText("Call of Duty");
 	activity.GetAssets().SetSmallImage("smallz");
 	activity.GetAssets().SetSmallText("Cold War");
