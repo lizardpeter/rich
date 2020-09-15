@@ -180,6 +180,6 @@ int main() //basically nothing here matters and this program can just be made in
 	
 	for (;;) //main program logic
 	{
-		
+		std::this_thread::sleep_for(std::chrono::milliseconds(15000));
 	}
 }
