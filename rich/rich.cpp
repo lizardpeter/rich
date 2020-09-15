@@ -7,7 +7,7 @@
 #include <chrono>
 #include <thread>
 
-using namespace std; //branch test
+using namespace std; //branch test for bocw
 
 discord::Core* core{};
 
