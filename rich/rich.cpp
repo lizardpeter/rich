@@ -23,7 +23,7 @@ int update = 0;
 auto result = discord::Core::Create(753812490525212762, DiscordCreateFlags_Default, &core);
 discord::Activity activity{}; //replace the ID with your application ID
 
-void updateDiscord() //this is called by the thread
+void updateDiscord() //this is called by updateDiscordThread
 {
 	core->ActivityManager().UpdateActivity(activity, [](discord::Result result) {
 
@@ -58,7 +58,7 @@ void updateDiscordThread()
 	} while (true);
 }
 
-void changeMap(string map)
+void changeMap(string map) //this is called by changeMapThread
 {
 	if (map == map1)
 	{
@@ -100,7 +100,7 @@ void changeMap(string map)
 		activity.GetAssets().SetSmallImage("ex");
 		activity.GetAssets().SetSmallText("Extinction");
 	}
-	update++;
+	update++; //tell the thread Discord must be sent an update
 	cout << "Map changed to " + map + "\n";
 }
 
@@ -143,14 +143,14 @@ void timerz()
 		const char* send = str.c_str();
 		std::cout << send;
 		activity.SetState(send);
-		update++;
+		update++; //tell the thread Discord must be sent an update
 		std::this_thread::sleep_for(std::chrono::milliseconds(15000)); //increase the drill count every 15 seconds
 
 		//updateDiscord();
 	}
 }
 
-int main()
+int main() //basically nothing here matters and this program can just be made into a class
 {
 	//std::cout << "Hello World!\n";
 	//discord::Core* core{};
@@ -175,7 +175,7 @@ int main()
 	std::thread maps(changeMapThread); //spawn the thread to change the map over time
 	maps.detach();
 
-	std::thread update(updateDiscordThread); //spawn the thread to update discord periodically
+	std::thread update(updateDiscordThread); //spawn the thread to update Discord periodically
 	update.detach();
 	
 	for (;;) //main program logic
