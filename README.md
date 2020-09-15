@@ -1,4 +1,4 @@
-# Discord Activity Editor
+# Discord Activity Changer
 
 This is a simple Discord activity editor made in c++ and designed for use in an upcoming project. 
 
