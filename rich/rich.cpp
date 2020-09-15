@@ -23,19 +23,27 @@ int update = 0;
 auto result = discord::Core::Create(753812490525212762, DiscordCreateFlags_Default, &core);
 discord::Activity activity{}; //replace the ID with your application ID
 
-void updateDiscord()
+void updateDiscord() //this is called by the thread
 {
 	core->ActivityManager().UpdateActivity(activity, [](discord::Result result) {
 
 		});
-	cout << "update sent";
+	cout << "Update sent\n";
 }
 
 void updateDiscordThread()
 {
 	do {
 		//auto check = ::core->RunCallbacks();
-		cout << update;
+		if (update == 1)
+		{
+			cout << "There is " + to_string(update) + " update queued\n";
+			
+		}
+		else if (update > 1)
+		{
+			cout << "There are " + to_string(update) + " updates queued\n";
+		}
 		if (update > 0)
 		{
 			updateDiscord();
@@ -46,12 +54,9 @@ void updateDiscordThread()
 		//}
 		auto check = ::core->RunCallbacks();
 
-		std::this_thread::sleep_for(std::chrono::milliseconds(16));
+		std::this_thread::sleep_for(std::chrono::milliseconds(16)); //polling rate
 	} while (true);
 }
-
-
-
 
 void changeMap(string map)
 {
@@ -62,7 +67,6 @@ void changeMap(string map)
 		activity.GetAssets().SetLargeText("Point of Contact");
 		activity.GetAssets().SetSmallImage("ex");
 		activity.GetAssets().SetSmallText("Extinction");
-		//activity.SetType(discord::ActivityType::Watching);
 	}
 	else if (map == map2)
 	{
@@ -97,7 +101,21 @@ void changeMap(string map)
 		activity.GetAssets().SetSmallText("Extinction");
 	}
 	update++;
-	std::this_thread::sleep_for(std::chrono::milliseconds(100000)); //change the map every 100 seconds
+	cout << "Map changed to " + map + "\n";
+}
+
+void changeMapThread()
+{
+	changeMap(map1);
+	std::this_thread::sleep_for(std::chrono::milliseconds(10000));
+	changeMap(map2);
+	std::this_thread::sleep_for(std::chrono::milliseconds(10000));
+	changeMap(map3);
+	std::this_thread::sleep_for(std::chrono::milliseconds(10000));
+	changeMap(map4);
+	std::this_thread::sleep_for(std::chrono::milliseconds(10000));
+	changeMap(map5);
+	std::this_thread::sleep_for(std::chrono::milliseconds(10000));
 }
 
 void timerz()
@@ -121,7 +139,7 @@ void timerz()
 		}
 			
 		hive = i;
-		string str = "Drilling Hive " + to_string(hive);
+		string str = "Drilling Hive " + to_string(hive) + "\n";
 		const char* send = str.c_str();
 		std::cout << send;
 		activity.SetState(send);
@@ -149,50 +167,19 @@ int main()
 	activity.GetAssets().SetSmallImage("ex");
 	activity.GetAssets().SetSmallText("Extinction");
 	activity.GetTimestamps().SetStart(time(0));
-	//activity.GetTimestamps().SetEnd(time(0) +5*60); //something like this if you want it to cound backwards
+	//activity.GetTimestamps().SetEnd(time(0) +5*60); //something like this if you want it to count backwards
 
 	std::thread hives(timerz); //spawn the thread to change drill over time
 	hives.detach();
 
+	std::thread maps(changeMapThread); //spawn the thread to change the map over time
+	maps.detach();
+
 	std::thread update(updateDiscordThread); //spawn the thread to update discord periodically
 	update.detach();
-
 	
-
-	//activity.GetParty().SetId("ae488379-351d-4a4f-ad32-2b9b01c91657");
-	//activity.SetInstance("ae488379-351d-4a4f-ad32-2b9b01c91657");
-	//activity.GetAssets.
-
-
-	//core->ActivityManager().UpdateActivity(activity, [](discord::Result result) {
-
-		//});
-	
-	for (;;)
+	for (;;) //main program logic
 	{
-		//::core->RunCallbacks();
-		//int i = 12;
-		changeMap(map1);
-		//updateDiscord();
-		//std::this_thread::sleep_for(std::chrono::milliseconds(10000));
-		changeMap(map2);
-		//updateDiscord();
-		//std::this_thread::sleep_for(std::chrono::milliseconds(10000));
-		changeMap(map3);
-		//updateDiscord();
-		//std::this_thread::sleep_for(std::chrono::milliseconds(10000));
-		changeMap(map4);
-		//updateDiscord();
-		//std::this_thread::sleep_for(std::chrono::milliseconds(10000));
-		changeMap(map5);
-		//updateDiscord();
-		//std::this_thread::sleep_for(std::chrono::milliseconds(10000));
-		//activity.SetState("test");
-		//core->ActivityManager().UpdateActivity(activity, [](discord::Result result) {
-
-			
-			
 		
-			//});
 	}
 }
