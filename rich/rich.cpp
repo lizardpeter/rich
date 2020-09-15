@@ -11,16 +11,16 @@ using namespace std; //branch test for bocw
 
 discord::Core* core{};
 
-string map1 = "Point of Contact";
-string map2 = "Nightfall";
-string map3 = "Mayday";
-string map4 = "Awakening";
-string map5 = "Exodus";
+string map1 = "Miami";
+string map2 = "Satellite";
+string map3 = "Armada";
+string map4 = "Crossroads";
+string map5 = "Moscow";
 
 int hive = 0;
 int update = 0;
 
-auto result = discord::Core::Create(753812490525212762, DiscordCreateFlags_Default, &core);
+auto result = discord::Core::Create(755272823647240282, DiscordCreateFlags_Default, &core);
 discord::Activity activity{}; //replace the ID with your application ID
 
 void updateDiscord() //this is called by updateDiscordThread
@@ -62,43 +62,51 @@ void changeMap(string map) //this is called by changeMapThread
 {
 	if (map == map1)
 	{
-		activity.SetDetails("Extinction on Point of Contact");
-		activity.GetAssets().SetLargeImage("poc");
-		activity.GetAssets().SetLargeText("Point of Contact");
-		activity.GetAssets().SetSmallImage("ex");
-		activity.GetAssets().SetSmallText("Extinction");
+		activity.SetDetails("Playing Hardpoint on Miami");
+		activity.GetAssets().SetLargeImage("bo");
+		activity.GetAssets().SetLargeText("Miami");
+		activity.GetAssets().SetSmallImage("small");
+		activity.GetAssets().SetSmallText("Multiplayer");
 	}
 	else if (map == map2)
 	{
-		activity.SetDetails("Extinction on Nightfall");
-		activity.GetAssets().SetLargeImage("nf");
-		activity.GetAssets().SetLargeText("Nightfall");
-		activity.GetAssets().SetSmallImage("ex");
-		activity.GetAssets().SetSmallText("Extinction");
+		activity.SetDetails("Playing Hardpoint on Satellite");
+		activity.GetAssets().SetLargeImage("bo");
+		activity.GetAssets().SetLargeText("Satellite");
+		activity.GetAssets().SetSmallImage("smallz");
+		activity.GetAssets().SetSmallText("Multiplayer");
 	}
 	else if (map == map3)
 	{
-		activity.SetDetails("Extinction on Mayday");
-		activity.GetAssets().SetLargeImage("may");
-		activity.GetAssets().SetLargeText("Mayday");
-		activity.GetAssets().SetSmallImage("ex");
-		activity.GetAssets().SetSmallText("Extinction");
+		activity.SetDetails("Hardpoint on Armada");
+		activity.GetAssets().SetLargeImage("bo");
+		activity.GetAssets().SetLargeText("Armada");
+		activity.GetAssets().SetSmallImage("smallz");
+		activity.GetAssets().SetSmallText("Multiplayer");
 	}
 	else if (map == map4)
 	{
-		activity.SetDetails("Extinction on Awakening");
-		activity.GetAssets().SetLargeImage("aw");
-		activity.GetAssets().SetLargeText("Awakening");
-		activity.GetAssets().SetSmallImage("ex");
-		activity.GetAssets().SetSmallText("Extinction");
+		activity.SetDetails("Playing Hardpoint on Crossroads");
+		activity.GetAssets().SetLargeImage("bo");
+		activity.GetAssets().SetLargeText("Crossroads");
+		activity.GetAssets().SetSmallImage("smallz");
+		activity.GetAssets().SetSmallText("Multiplayer");
+	}
+	else if (map == map5)
+	{
+		activity.SetDetails("Playing Hardpoint on Moscow");
+		activity.GetAssets().SetLargeImage("bo");
+		activity.GetAssets().SetLargeText("Moscow");
+		activity.GetAssets().SetSmallImage("smallz");
+		activity.GetAssets().SetSmallText("Multiplayer");
 	}
 	else
 	{
-		activity.SetDetails("Extinction on Exodus");
-		activity.GetAssets().SetLargeImage("exo");
-		activity.GetAssets().SetLargeText("Exodus");
-		activity.GetAssets().SetSmallImage("ex");
-		activity.GetAssets().SetSmallText("Extinction");
+		activity.SetDetails("In pre-game lobby");
+		activity.GetAssets().SetLargeImage("bo");
+		activity.GetAssets().SetLargeText("Call of Duty");
+		activity.GetAssets().SetSmallImage("smallz");
+		activity.GetAssets().SetSmallText("Cold War");
 	}
 	update++; //tell the thread Discord must be sent an update
 	cout << "Map changed to " + map + "\n";
@@ -106,16 +114,28 @@ void changeMap(string map) //this is called by changeMapThread
 
 void changeMapThread()
 {
+	changeMap("stall");
+	std::this_thread::sleep_for(std::chrono::milliseconds(15000));
 	changeMap(map1);
-	std::this_thread::sleep_for(std::chrono::milliseconds(10000));
+	std::this_thread::sleep_for(std::chrono::milliseconds(900000));
+	changeMap("stall");
+	std::this_thread::sleep_for(std::chrono::milliseconds(15000));
 	changeMap(map2);
-	std::this_thread::sleep_for(std::chrono::milliseconds(10000));
+	std::this_thread::sleep_for(std::chrono::milliseconds(900000));
+	changeMap("stall");
+	std::this_thread::sleep_for(std::chrono::milliseconds(15000));
 	changeMap(map3);
-	std::this_thread::sleep_for(std::chrono::milliseconds(10000));
+	std::this_thread::sleep_for(std::chrono::milliseconds(900000));
+	changeMap("stall");
+	std::this_thread::sleep_for(std::chrono::milliseconds(15000));
 	changeMap(map4);
-	std::this_thread::sleep_for(std::chrono::milliseconds(10000));
+	std::this_thread::sleep_for(std::chrono::milliseconds(900000));
+	changeMap("stall");
+	std::this_thread::sleep_for(std::chrono::milliseconds(15000));
 	changeMap(map5);
-	std::this_thread::sleep_for(std::chrono::milliseconds(10000));
+	std::this_thread::sleep_for(std::chrono::milliseconds(900000));
+	changeMap("stall");
+	std::this_thread::sleep_for(std::chrono::milliseconds(15000));
 }
 
 void timerz()
@@ -160,17 +180,18 @@ int main() //basically nothing here matters and this program can just be made in
 	//activity.SetState("0");
 	//activity.SetType(discord::ActivityType::Streaming);
 	//here is the default/starting activity
-	activity.SetState("Drilling Hive " + hive);
-	activity.SetDetails("Extinction on Awakening");
-	activity.GetAssets().SetLargeImage("aw");
-	activity.GetAssets().SetLargeText("Awakening");
-	activity.GetAssets().SetSmallImage("ex");
-	activity.GetAssets().SetSmallText("Extinction");
+	activity.SetDetails("In a party");
+	//activity.SetDetails("Extinction on Awakening");
+	activity.GetAssets().SetLargeImage("bo");
+	activity.GetAssets().SetLargeText("Call of Duty");
+	activity.GetAssets().SetSmallImage("smallz");
+	activity.GetAssets().SetSmallText("Cold War");
 	activity.GetTimestamps().SetStart(time(0));
+
 	//activity.GetTimestamps().SetEnd(time(0) +5*60); //something like this if you want it to count backwards
 
-	std::thread hives(timerz); //spawn the thread to change drill over time
-	hives.detach();
+	//std::thread hives(timerz); //spawn the thread to change drill over time
+	//hives.detach();
 
 	std::thread maps(changeMapThread); //spawn the thread to change the map over time
 	maps.detach();
