@@ -72,9 +72,9 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Users\Peter\source\repos\rich\rich;$(IncludePath)</IncludePath>
-    <SourcePath>C:\Users\Peter\source\repos\rich\rich;$(SourcePath)</SourcePath>
-    <ReferencePath>C:\Users\Peter\source\repos\rich\lib;$(ReferencePath)</ReferencePath>
+    <IncludePath>$(SolutionDir)rich;$(IncludePath)</IncludePath>
+    <SourcePath>$(SolutionDir)rich;$(SourcePath)</SourcePath>
+    <ReferencePath>$(SolutionDir)lib;$(ReferencePath)</ReferencePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
